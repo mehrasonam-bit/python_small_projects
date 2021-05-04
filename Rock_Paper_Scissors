@@ -1,0 +1,32 @@
+print('#######ROCK PAPER SCISSORS########\n')
+print('RULES FOR THE GAME\n1.Rock smashes Scissors\n2.Paper covers Rock\n3.Scissors cut Paper\n4.User wins Over Everyone\n')
+print('Select Your choice from below given options:\n')
+print('1= ROCK \n2=PAPER\n3=SCISSORS\n4=YOUR NAME\n')
+name_player= str(input('Enter your name player:'))
+while True:
+  player=int(input('Enter your choice:'))
+  computer= random.randint(1,4)
+  print(f'Computer chose {computer}')
+  if player==computer:
+    print('Tie')
+  elif player==1 and computer ==3:
+    print(f'Rock smashes Scissors! {name_player.title()} you win!!')
+  elif player==2 and computer==1:
+    print(f'Paper covers rock! {name_player.title()} you Win!')
+  elif player==3 and computer==2:
+    print(f'Scissors cut paper ! {name_player.title()} you Win!')
+  elif player==3 and computer==1:
+    print(f'Rock smashes Scissors! {name_player.title()} you loose!!')
+  elif player==1 and computer==2:
+    print(f'Paper covers rock! {name_player.title()} you loose!')
+  elif player==2 and computer==3:
+    print(f'Scissors cut paper ! {name_player.title()} you loose!')
+  elif player==4 and (computer==1 or computer==2 or computer==3) :
+    print(f'{name_player.title()} You Win!')
+  elif (player==1 or player==2 or player==3) and computer==4:
+    print(f'{name_player.title()} you loose!')
+  else:
+    print('wrong input')
+  play_more= input('Want to play more? (y/n)')
+  if play_more.lower()!='y':
+    break
