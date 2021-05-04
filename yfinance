@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+
+
+
+#pip install yfinance
+
+
+#pip install plotly
+
+# Raw Package
+import numpy as np
+import pandas as pd
+
+#Data Source
+import yfinance as yf
+
+#Data viz
+import plotly.graph_objs as gp
+
+#download ethereum data
+data = yf.download(tickers='ETH-CAD',period = '8d', interval = '60m')
+print(data)
+
+#Moving average using Python Rolling function
+#rolling function used for window size 
+data['MA5'] = data['Close'].rolling(5).mean()
+data['MA20'] = data['Close'].rolling(20).mean()
+print(data)
+#declare figure
+fig = gp.Figure()
+
+#Candlestick
+fig.add_trace(gp.Candlestick(x=data.index,
+                open=data['Open'],
+                high=data['High'],
+                low=data['Low'],
+                close=data['Close'], name = 'market data'))
+
+#Add Moving average on the graph
+fig.add_trace(gp.Scatter(x=data.index, y= data['MA20'],line=dict(color='blue', width=1.5), name = 'Death Line'))
+fig.add_trace(gp.Scatter(x=data.index, y= data['MA5'],line=dict(color='orange', width=1.5), name = 'Gold Line'))
+
+
+
+#Show
+fig.show()
+print('ding')
+
+
+# In[ ]:
+
+
+
+
