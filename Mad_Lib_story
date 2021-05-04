@@ -1,0 +1,38 @@
+print("********MAD LIB STORY**********")
+#Lists to store story elements
+noun=["bubble","cannon","stage","knife","legend","mouth"]
+adjective=["abundant","huge","inexpensive","tall","quiet","broken","grand","sticky"]
+verb=["itch","jump","chase","escape","visit","vanish"]
+plural_noun=["leaves","birds","shirts","flowers","eggs","brooms","forks"]
+number=[2,20]
+color=["red"]
+place=[]
+
+print("CREATE YOUR OWN STORY")
+print("\n ")
+#loops run till its not interuppted by the user
+while True:
+  print("Before we print your version of story, make some contribution to your story ")
+  #inputs for the story elements
+  cartoon=input("Enter your favourite Cartoon Character:\t")
+  number_list=int(input("Enter a number of your choice:\t"))
+  color_list=input("Enter a color of your choice:\t")
+  place_list=input("Enter a place of your choice:\t")
+
+  #appends elements to respective lists
+  color.append(color_list)
+  number.append(number_list)
+  place.append(place_list)
+  #prints mad lib story using random's choice function to select the random elements from the given lists above
+  print(f"A PLACE FIT FOR A {cartoon.upper()}")
+  print(f"{cartoon.title()} abode is a very {r.choice(adjective)}.At first glance, it seems like a/an {r.choice(adjective)},but if you look closer, you'll see it's actually a comfortable {r.choice(noun)}.\n For one, {cartoon.title()} has a super_cozy beanbag {r.choice(noun)}. When he feels like listening to some {r.choice(adjective)} tunes from the 1980's, {cartoon} turns on his/her  old school {r.choice(noun)}, pulls out his collection of {r.choice(plural_noun)} and jams out. He/She has a/an {r.choice(color)} ping-pong table where he/she plays against himself/herself. His/Her record is {r.choice(number)} wins and zero looses!! He/She got a/an {r.choice(adjective)} photo of {r.choice(place).title()} next to a {r.choice(color)} poster of {r.choice(plural_noun)}. It may not be much, nut {cartoon.title()} loves to {r.choice(verb)} in his/her cave all the time")
+
+  #checks if user wants to continue with another story
+  print("Do you want to continue making new story?\n")
+  next_story=input("Press Enter to continue or Press Q to quit:\t")
+ 
+  if next_story.lower()=='q':
+    break
+time.sleep(2)
+print("\n")
+
