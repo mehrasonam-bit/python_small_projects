@@ -1,0 +1,127 @@
+
+
+print("***************WELCOME TO CARD WAR GAME***************")
+#input player's name
+name=input("Enter Your Name: ")
+#creates a deck of 52 cards
+deck=list(range(2,15))
+deck+=list(range(2,15))
+deck+=list(range(2,15))
+deck+=list(range(2,15))
+#shuffles the deck
+r.shuffle(deck)
+#distribute the deck among player and computer
+player_deck=deck[:26]
+computer_deck=deck[26:]
+#prints player's and computer's deck
+print("player\n",player_deck)
+print("computer\n",computer_deck)
+
+#stores winning cards of player and computer
+player_win_deck=[]
+computer_win_deck=[]
+
+#Loop will run till both the list has some value,if one list is empty it exists
+while len(player_deck) > 0 or len(computer_deck) > 0:
+  #by using pop we are working from end to forward
+  player_turn=player_deck.pop()
+  computer_turn=computer_deck.pop()
+  #computer face card display conversion
+  computer_temp, player_temp = '',''
+  
+  if computer_turn == 11:
+    computer_temp = "J"
+  elif computer_turn == 12:
+    computer_temp = 'Q'
+  elif computer_turn == 13:
+    computer_temp = "K"
+  elif computer_turn == 14:
+    computer_temp = "A"   
+  else:
+    computer_temp = computer_turn
+  #player face card display conversion
+  if player_turn == 11:
+    player_temp = "J"
+  elif player_turn == 12:
+    player_temp = 'Q'
+  elif player_turn == 13:
+    player_temp = "K"
+  elif player_turn == 14:
+    player_temp = "A"   
+  else:
+    player_temp = player_turn
+  #prints the card popped from the list of player and computer
+  print(f"{name.title()} got {player_temp} and computer got {computer_temp}")
+  #to add cards currently on the table
+  table_cards=[]
+  
+  #check for war
+  if player_turn==computer_turn:
+    print("There is a Match! Time for a war.\n")
+    print("Each player remove three cards face down and then draw fourth")
+    #appends player and computer picked number to empty list table_cards
+    table_cards.append(player_turn)
+    table_cards.append(computer_turn)
+
+    #to check the number of cards remaining in the deck
+    if len(player_deck) <4:
+      print("less card")
+      break
+    else: 
+      #for loop to extract 3 cards from player's deck  
+      for i in range(3):
+        table_cards.append(player_deck.pop())
+      #player draws the fourth card from the deck
+      player_turn=player_deck.pop()
+    #to check the number of cards remaining in the deck  
+    if len(computer_deck)<4:
+      print("less card")
+      break
+    else:
+      for x in range(3):
+        table_cards.append(computer_deck.pop())
+      #computer draws the fourth card from the deck
+      computer_turn=computer_deck.pop()
+    #append fourth card to the table cards
+    table_cards.append(computer_turn)
+    table_cards.append(player_turn)
+    
+    #check the rank of the cards
+    if player_turn>computer_turn:
+      #add table cards to the player's deck
+      player_win_deck+=table_cards
+      print("Player Wins!")  
+    else:
+      #adds table cards to computer's deck
+      computer_win_deck+=table_cards
+      print("Computer_wins")
+  #checks for the ranks of the card drawn  
+  elif player_turn > computer_turn:
+    print("Player Wins")
+    #appends the popped card from both player and computer deck to winners deck
+    player_win_deck.append(player_turn)
+    player_win_deck.append(computer_turn)
+    
+  else:
+    print("Computer Wins")
+    #appends the popped card from both player and computer deck to winners deck
+    computer_win_deck.append(player_turn)
+    computer_win_deck.append(computer_turn)
+    
+  print(f"player score {len(player_win_deck)} computer score {len(computer_win_deck)}\n ")
+  time.sleep(1)
+
+
+#prints winner
+print("Winner Is:")
+#compares the length of the winning deck
+if len(player_win_deck) > len(computer_win_deck):
+    print(f"{name.title()} with score {len(player_win_deck)}\n")
+elif len(computer_win_deck) > len(player_win_deck):
+    print(f"Computer with score {len(computer_win_deck)}!\n")
+else:
+  print("Hey! It's a Tie")
+
+print("\n")
+
+time.sleep(2)
