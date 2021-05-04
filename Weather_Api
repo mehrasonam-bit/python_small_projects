@@ -1,0 +1,29 @@
+# importing requests and json
+import requests
+import json
+# base URL of the api
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+#enter the name of the city 
+city=input('Enter the name of the city:')
+# API key from the weather api url
+API_KEY = "955ef958ae7a3b938f3b253b75c833a3"
+# upadting the URL to extract the information
+URL = BASE_URL + "q=" + city + "&appid=" + API_KEY
+# HTTP request to fetch the url
+response = requests.get(URL)
+# checking the status code of the request
+if response.status_code == 200:
+   # getting data in the json format
+   x = response.json()
+   # getting the main dict block
+   main = x['main']
+   # getting temperature
+   temp = main['temp']
+   
+   #"K to F" (temperature- 273)*9/5 + 32,
+   #"K to C"temperature-273}
+   #prints the temperature in celsius, farenhite,kelvin with city name
+   print(f'The temperature in {city} is {temp-273:.2f}C which is {((temp-273)*9/5+32):.2f}F and {temp}K')
+else:
+   # showing the error message
+   print("City Not Found")
